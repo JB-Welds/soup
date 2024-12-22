@@ -15,20 +15,45 @@
             height: 100vh;
             object-fit: cover;
         }
+        #click-to-play {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
-    <video autoplay loop controls>
+    <div id="click-to-play">
+        Click to Play
+    </div>
+    <video loop>
         <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <script>
-        // Attempt to force autoplay with sound
         const video = document.querySelector("video");
-        video.volume = 1; // Ensure volume is set
-        video.play().catch((error) => {
-            console.error("Autoplay failed due to browser restrictions:", error);
+        const overlay = document.getElementById("click-to-play");
+
+        // Enable autoplay with sound after user interaction
+        overlay.addEventListener("click", () => {
+            video.play();
+            overlay.style.display = "none"; // Hide the overlay after playing
         });
+
+        // Optional: Preload video for seamless playback
+        video.preload = "auto";
+        video.volume = 1; // Set sound to full volume
     </script>
 </body>
 </html>
