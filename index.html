@@ -24,18 +24,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.8);
+            background-image: url('your-background-image.jpg'); /* Add your background image here */
+            background-size: cover; /* Ensure the background image covers the entire area */
+            background-position: center; /* Center the background image */
             color: white;
             font-size: 24px;
             font-family: Arial, sans-serif;
             cursor: pointer;
             z-index: 10;
+            transition: background 0.3s ease;
+        }
+        #click-to-play:hover {
+            background-color: rgba(0, 0, 0, 0.5); /* Slight transparency on hover */
         }
     </style>
 </head>
 <body>
     <div id="click-to-play">
-        Tap to Play
+        Tap to Open
     </div>
     <video loop playsinline>
         <source src="your-video.mp4" type="video/mp4">
@@ -45,7 +51,7 @@
         const video = document.querySelector("video");
         const overlay = document.getElementById("click-to-play");
 
-        // Android Chrome requires user interaction to enable autoplay with sound
+        // Enable autoplay with sound after user interaction
         overlay.addEventListener("click", () => {
             video.play();
             overlay.style.display = "none"; // Hide the overlay after playing
