@@ -35,9 +35,9 @@
 </head>
 <body>
     <div id="click-to-play">
-        Click to Play
+        Tap to Play
     </div>
-    <video loop>
+    <video loop playsinline>
         <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -45,15 +45,16 @@
         const video = document.querySelector("video");
         const overlay = document.getElementById("click-to-play");
 
-        // Enable autoplay with sound after user interaction
+        // Android Chrome requires user interaction to enable autoplay with sound
         overlay.addEventListener("click", () => {
             video.play();
             overlay.style.display = "none"; // Hide the overlay after playing
         });
 
-        // Optional: Preload video for seamless playback
-        video.preload = "auto";
-        video.volume = 1; // Set sound to full volume
+        // Ensure video works inline on mobile devices
+        video.setAttribute("playsinline", "true");
+        video.setAttribute("autoplay", "true");
+        video.volume = 1; // Set the volume to full
     </script>
 </body>
 </html>
