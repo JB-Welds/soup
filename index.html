@@ -18,14 +18,14 @@
     </style>
 </head>
 <body>
-    <video autoplay loop>
+    <video autoplay loop controls>
         <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <script>
-        // Force autoplay with sound in some browsers
+        // Attempt to force autoplay with sound
         const video = document.querySelector("video");
-        video.volume = 1; // Ensure sound is not muted
+        video.volume = 1; // Ensure volume is set
         video.play().catch((error) => {
             console.error("Autoplay failed due to browser restrictions:", error);
         });
